@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Delivery App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>FoodDash</h1>
+    </div>
+    <div class="row">
+            <div class="col s12 m7">
+              <div class="card">
+                <div class="card-image">
+                  <img src="uber.jpg">
+                  <span class="card-title">Low Calary Lunch Package</span>
+                </div>
+                <div class="card-content">
+                  <p>Asian and Italian flavors find a welcome home in Atlanta at these hotspots that just got hotter as Food Dash partners. The indecisive among us will delight in 
+                        URBAN Wu Chinese Cuisine
+                        ’s 107 menu options, as well as the customizable pies at 
+                        Crazy Dough’s Pizza
+                         and Hawaiian-inspired bowls at 
+                        Poke Bar
+                        . Smoothies and slushies join the namesake sip at 
+                        Boba Theory
+                        , and 
+                        AZN Sandwich Bar
+                         shares “taste bud thrillers” such as healthy soul bowls and savory steamed buns. 
+                        Read More!</p>
+                        <br>
+                        <p style="color: #01579b;" class="flow-text" id="catagories">Balanced Meal Package</p>
+                        <br>
+                        Price = <p id="mytext"><input type="text" value="10" id="myPrice"></p>
+                        <span id="errors"></span>
+                        </div>
+                
+                <button id="buttonz" style="background-color: white; border: 0px;"><a class="btn-floating btn-large cyan pulse"><i class="material-icons">add</i></a></button>
+                
+                <table id="tablez">
+                        <thead>
+                          <tr>
+                              
+                              <th>Price</th>
+                              
+                              <th>Category of Food</th>
+                              
+                          </tr>
+                        </thead>
+                
+                        <tbody>
+                            
+                          <tr>
+                            
+                            
+                            <td><input type="text" id="price" contenteditable='false'></td>
+                            
+                            <td><input type="text" id="category" placeholder="Enter Your Cateogory" contenteditable="false"></td>
+                            
+                            
+                          </tr>
+                          </table>
+                          
+                          <button id="buttonz2"  style="background-color: white; border: 0px;" type="button"><a class="btn-floating btn-large cyan pulse"><i class="material-icons">shop</i></a></button>
+                        
+                          <table>
+                          <tbody>
+                            <th style="color: red;" id="confirmation" class="responsive-text"></th>
+                          </tbody>
+                        </table>
+                        
+                        
+                        <div class="row" id="myCart">
+                            <div class="col s40 m12">
+                              <div class="card blue-grey whiten-1">
+                                <div class="card-content white-text">
+                                  <span class="card-title">Cart</span>
+                                  <table id="myTable">
+                                      <thead>
+                                        <tr>
+                                            
+                                            <th>Price</th>
+                                            
+                                            <th>Category of Food</th>
+                                            <th>Number of Orders</th>
+                                            
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      <form action="/upload" method="POST">
+                                        <tr>
+                                       
+                                         
+                                         <td><input type="text" id="Price" name="price"></td>
+                                         
+                                         <td><input type="text" id="Category" name="category"></td>
+                                         <td><input type="number" id="Orders" name="Order" min="1"></td>
+                                        
+                                        
+                                     
+                                        </tr>
+                                        
+                                      </tbody>
+                                      
+                                      </table>
+                                </div>
+                                
+                              </div>
+                              <div class="container">
+                              <h3>Total Price</h3> <input type="text" id="totalCalculations" value="$ 10">
+                            </div>
+                            <button type="button" class="btn" id="questionButton">Order</button>
+                            <input type="text" id = 'name' name="name" placeholder="Enter your name here">
+                            <br>
+                            <input type="email" id="email" name="email" placeholder="Enter your email here">
+                            
+                            <br>
+                            <br>
+                            <button type="submit"  id="confirm" style="background-color: white; border: 0px;"><a class="btn-floating btn-large red pulse"><i class="material-icons">done</i></a></button>
+                          </form>
+                            </div>
+                                
+                          </div>
+                      
+                    
+
+                       
+                        
+                         
+
+                        
+           
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script>
+  $(document).ready(function(){
+    $("#confirm").hide()
+    $("#name").hide();
+    $("#email").hide();
+    $("#myCart").hide()
+      $("#tablez").hide()
+      $("#buttonz2").hide();
+      $("#submitbutton").hide()
+      $("#buttonz").on("click",function(){
+        $("#tablez").fadeToggle();
+        $("#buttonz2").fadeToggle();
+        
+      });
+     $("#buttonz2").on("click",function(){
+       $("#myCart").toggle(500);
+       
+     });
+     $("#questionButton").on("click",function(){
+      $("#name").toggle(500);
+       $("#email").toggle(500);
+       $("#confirm").toggle(500)
+     })
+
+  })
+</script>
+</body>
+<script>
+var loopedCategory = document.getElementById("Category")
+var loopedPrice = document.getElementById("Price");
+var loopedOrders = document.getElementById("Orders");
+var prices = document.getElementById("price");
+var emptyText = '';
+var emptyCart = [];
+var category = document.getElementById("category")
+var categories = document.getElementById("categories");
+var myPrice = document.getElementById("myPrice");
+var button = document.getElementById("buttonz");
+window.addEventListener("load",function(){
+  document.getElementById("mytext").innerHTML = "$ " + myPrice.value 
+});
+button.addEventListener("click",function(){
+  document.getElementById("price").value = "$ " + myPrice.value;
+  document.getElementById("category").value = "Balanced Meal Package"
+  
+});
+//add all these value into the shopping cart          
+var button2 = document.getElementById("buttonz2");
+button2.addEventListener("click",function(){
+  emptyCart.push(prices.value,category.value);
+  console.log(emptyCart)
+  
+  document.getElementById("Orders").value  = 1
+});
+var buttton2 = document.getElementById("buttonz2");
+button2.addEventListener("click",function(){
+  for(var i = 0;i<emptyCart.length;i++){
+    emptyText+=emptyCart[i];
+  }
+  loopedPrice.value = emptyCart[0];
+  loopedCategory.value = emptyCart[1];
+  
+})
+loopedOrders.addEventListener("click",function(){
+  var loopedResult = myPrice.value *  loopedOrders.value;
+  document.getElementById("Price").value = "$ " + loopedResult;
+  document.getElementById("totalCalculations").value = "$ " + loopedResult;
+  
+})
+</script>
+</html>
+
+
+
+
+
+
+
